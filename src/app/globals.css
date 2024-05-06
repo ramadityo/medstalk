@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* 
+body {
+
+} */
+
+body {
+    background: whitesmoke;
+}
+
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+}
