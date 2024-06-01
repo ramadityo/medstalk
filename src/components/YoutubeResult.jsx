@@ -1,7 +1,7 @@
 import React from "react";
 
-function YoutubeResult({ data }) {
-    const data = data.props;
+function YoutubeResult() {
+    // const data = data.props;
 
     return(
         <>
