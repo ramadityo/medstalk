@@ -9,10 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tippyjs/react": "^4.2.6",
     "axios": "^1.6.8",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sweetalert2": "^11.11.0",
+    "sweetalert2-react-content": "^5.0.7"
   },
   "devDependencies": {
     "eslint": "^8",
