@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function Navbar() {
     return (
@@ -6,13 +7,13 @@ function Navbar() {
             <h1 className="text-3xl font-hndExtBold">Medstalk</h1>
 
             <ul className="flex gap-4">
-                <li className="relative font-hndMedium">
-                    <a href="#">About</a>
-                    <span></span>
+                <li className="relative font-hndMedium group">
+                    <Link href="#">About</Link>
+                    <span className="transition-all absolute bottom-0 left-0 right-0 h-[2px] bg-white origin-center scale-x-0 group-hover:scale-x-100"></span>
                 </li>
-                <li className="relative font-hndMedium">
-                    <a href="#">Github</a>
-                    <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-white"></span>
+                <li className="relative font-hndMedium group">
+                    <Link href="https://github.com/ramadityo/medstalk">Github</Link>
+                    <span className="transition-all absolute bottom-0 left-0 right-0 h-[2px] bg-white origin-center scale-x-0 group-hover:scale-x-100"></span>
                 </li>
             </ul>
         </nav>
