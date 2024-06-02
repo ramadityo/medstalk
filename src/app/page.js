@@ -2,38 +2,75 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import axios from "axios";
+
+/*
+|++++++++++++++++++++++++++++++++|
+|           COMPONENTS           |
+|++++++++++++++++++++++++++++++++|
+*/
+
 import Navbar from "@/components/Navbar";
+import YoutubeResult from "@/components/YoutubeResult";
+import TiktokResult from "@/components/TiktokResult";
+
+/*
+|++++++++++++++++++++++++++++++++|
+|           LIBRARIES            |
+|++++++++++++++++++++++++++++++++|
+*/
 
 import Tippy from "@tippyjs/react";
-import "tippy.js/dist/tippy.css"; // optional
+import "tippy.js/dist/tippy.css";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
+/*
+|++++++++++++++++++++++++++++++++|
+|              APIS              |
+|++++++++++++++++++++++++++++++++|
+*/
 
 import YoutubeGetId from "@/api/YoutubeGetId";
-// import { Image } from "next/image";
+import YoutubeGetDetails from "@/api/YoutubeGetDetails";
 
 export default function Home() {
     // const [input, setInput] = useState("");
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
+    /*
+    |++++++++++++++++++++++++++++++++|
+    |          Validator             |
+    |++++++++++++++++++++++++++++++++|
+    */
+    
     const [youtubeInput, setYoutubeInput] = useState(true);
     const [tiktokInput, setTiktokInput] = useState(false);
-
-    
+    const [ytUsername, setYtUsername] = useState("");
+    const [ttUsername, setTtUsername] = useState("");
 
     /*
     |++++++++++++++++++++++++++++++++|
     |       YOUTUBE SECTION          |
     |++++++++++++++++++++++++++++++++|
     */
-    const [ytUsername, setYtUsername] = useState("");
-    const [ytData, setYtData] = useState(null);
+    
+    const [ytId, setYtId] = useState(null);
+    const [ytAvatar, setYtAvatar] = useState("");
+    const [ytTitle, setYtTitle] = useState("");
+    const [ytDesc, setYtDesc] = useState("");
+    const [ytSubsCount, setYtSubsCount] = useState("");
+    const [ytLinks, setYtLinks] = useState();
+    const [ytAvatars, setYtAvatars] = useState();
+    const [ytVerified, setYtVerified] = useState();
+    const [ytHasBusiness, setYtHasBusiness] = useState();
+    const [ytViewCount, setYtViewCount] = useState("");
+    const [ytCountry, setYtCountry] = useState("");
+    const [ytCreationDate, setYtCreationDate] = useState("");
 
     const youtubeClick = () => {
         setYoutubeInput(true);
         setTiktokInput(false);
+        setTtUsername(""); // Hapus username tiktok jika memilih yt
     };
 
     /*
@@ -41,12 +78,13 @@ export default function Home() {
     |        TIKTOK SECTION          |
     |++++++++++++++++++++++++++++++++|
     */
-    const [ttUsername, setTtUsername] = useState("");
-    const [youtubeId, setYoutubeId] = useState(null);
+
+    const [ttId, setTtId] = useState(null);
 
     const tiktokClick = () => {
         setTiktokInput(true);
         setYoutubeInput(false);
+        setYtUsername(""); // Hapus username yt jika memilih tiktok
     };
 
     /*
@@ -56,16 +94,31 @@ export default function Home() {
     */
 
     const handleSubmit = async () => {
-        if (ytUsername) {
+        setLoading(true);
+        if (ytUsername && youtubeInput) {
             const data = await YoutubeGetId(ytUsername);
             const channelId = data.channel_id;
-
-            setYoutubeId(channelId)
             
+            setTimeout(async () => {
+                setLoading(false);
+                const detail = await YoutubeGetDetails(channelId);
+                setYtId(detail.channel_id);
+                setYtAvatar(detail.avatar[2].url);
+                setYtTitle(detail.title);
+                setYtDesc(detail.description);
+                setYtSubsCount(detail.subscriber_count);
+                setYtLinks(detail.links);
+                setYtAvatars(detail.avatar);
+                setYtVerified(detail.verified);
+                setYtHasBusiness(detail.has_business_email);
+                setYtViewCount(detail.view_count);
+                setYtCountry(detail.country);
+                setYtCreationDate(detail.creation_date);
+            }, 2000);
+        } else {
+            return null;
         }
-    }
-
-    
+    };
 
     /*
         |++++++++++++++++++++++++++++++++|
@@ -120,18 +173,22 @@ export default function Home() {
                 <p className="text-2xl font-hndMedium text-[#0a0a0a]">Enter the username below.</p>
 
                 {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-red-500 outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
-                
+
                 {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-black outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
-                <button onClick={handleSubmit} className="px-5 py-2 text-white bg-blue-500 rounded-xl">Submit</button>
+                <button onClick={handleSubmit} className="px-5 py-2 text-white bg-blue-500 rounded-xl">
+                    Submit
+                </button>
             </section>
 
             {/* Hasil pelacakan */}
 
-            <section className="flex flex-col items-center w-full min-h-3">
+            <section className="flex flex-col items-center w-full min-h-screen">
                 <h1 className="text-[3rem] font-hndMedium">Result</h1>
 
-                <h1 className="text-3xl">{youtubeId}</h1>
+                {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
+                
+                {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytDesc={ytDesc} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
             </section>
         </main>
     );

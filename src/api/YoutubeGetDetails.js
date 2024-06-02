@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 
-export default async function GetChannelDetails(channel_id) {
+export default async function YoutubeGetDetails(channel_id) {
     const options = {
         method: "GET",
-        url: "https://youtube-v2.p.rapidapi.com/channel/details",
+        url: `${process.env.NEXT_PUBLIC_YOUTUBE_DETAIL_API}`,
         params: {
             channel_id: channel_id,
         },

@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from "axios";
 
-export default async function GetChannelId(channel_name) {
+export default async function YoutubeGetId(channel_name) {
     const options = {
         method: "GET",
         url: `${process.env.NEXT_PUBLIC_YOUTUBE_ID_API}`,
