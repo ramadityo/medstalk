@@ -176,9 +176,10 @@ export default function Home() {
 
                 {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-black outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
-                <button onClick={handleSubmit} className="px-5 py-2 text-xl text-white bg-blue-500 rounded-xl">
-                    Submit
-                </button>
+                {loading ? <button disabled className="px-5 py-2 text-xl text-white bg-blue-500 opacity-50 cursor-not-allowed rounded-xl">Loading...</button> : <button disabled={!ytUsername && !ttUsername} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 py-2 text-xl text-white bg-blue-500 rounded-xl`}>
+                        Submit
+                    </button> 
+                }
             </section>
 
             {/* Hasil pelacakan */}
