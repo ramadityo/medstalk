@@ -2,9 +2,9 @@ import React from "react";
 
 import Image from "next/image";
 import Verified from "./Verified";
+import Link from "next/link";
 
 function YoutubeResult(props) {
-    // ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, ytAvatars, ytVerified, ytHasBusiness, ytViewCount, ytCountry, ytCreationDate
     const { ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, ytAvatars, ytVerified, ytHasBusiness, ytViewCount, ytCountry, ytCreationDate } = props;
 
     return (
@@ -50,12 +50,38 @@ function YoutubeResult(props) {
 
             <h1 className="pt-12 text-3xl font-hndMedium">Miscellaneous Info</h1>
 
-            <div className="max-w-1/2">
-                <table className="text-lg">
+            <div className="">
+                <table className="text-lg border-separate border-spacing-3">
                     <tr>
-                        <td>Youtube descirption</td>
+                        <td>Links</td>
                         <td>:</td>
-                        <td>{ytDesc}</td>
+                        <td className="flex gap-2">
+                            {ytLinks.map((link, idx) => {
+                                return (
+                                    <span key={idx}>
+                                        <Link href={`https://` + `${link.endpoint}`} className="text-blue-500 underline" target="_blank">
+                                            {link.name}
+                                        </Link>
+                                    </span>
+                                );
+                            })}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Has business email</td>
+                        <td>:</td>
+                        <td>{ytHasBusiness ? "Yes" : "No"}</td>
+                    </tr>
+                    <tr>
+                        <td>Viewed count</td>
+                        <td>:</td>
+                        <td>{ytViewCount}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Account created</td>
+                        <td>:</td>
+                        <td>{ytCreationDate}</td>
                     </tr>
                 </table>
             </div>
