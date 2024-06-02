@@ -94,6 +94,7 @@ export default function Home() {
     */
 
     const handleSubmit = async () => {
+        setYtId("");
         setLoading(true);
         if (ytUsername && youtubeInput) {
             const data = await YoutubeGetId(ytUsername);

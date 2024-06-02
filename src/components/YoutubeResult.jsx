@@ -38,6 +38,7 @@ function YoutubeResult({ ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, 
                     <td>{ytCountry}</td>
                 </tr>
             </table>
+            
         </>
     );
 }
