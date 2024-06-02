@@ -136,8 +136,8 @@ export default function Home() {
     };
 
     return (
-        <main className="items-center justify-center min-h-screen">
-            <section className="relative w-full flex flex-col bg-black min-h-[70vh] hero-sec overflow-hidden rounded-br-[7rem] rounded-bl-[7rem]">
+        <main className="items-center justify-center max-w-full min-h-screen">
+            <section className="relative max-w-full flex flex-col bg-black min-h-[70vh] hero-sec overflow-hidden rounded-br-[7rem] rounded-bl-[7rem]">
                 <div className="absolute inset-0 ">
                     <Image src="/hero.webp" fill={true} className="object-cover transition-all animate-[] brightness-50 saturate-150" alt="hero"></Image>
                 </div>
@@ -170,7 +170,7 @@ export default function Home() {
 
             {/* Input */}
 
-            <section className="flex flex-col items-center w-full gap-4 py-4 pb-12 min-h-10">
+            <section className="flex flex-col items-center max-w-full gap-4 py-4 pb-12 min-h-10">
                 <p className="text-2xl font-hndMedium text-[#0a0a0a]">Enter the username below.</p>
 
                 {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-red-500 outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
@@ -190,7 +190,7 @@ export default function Home() {
 
             {/* Hasil pelacakan */}
 
-            <section className="flex flex-col items-center w-full min-h-screen">
+            <section className="flex flex-col items-center max-w-full min-h-screen">
                 <h1 className="text-[3rem] font-hndMedium">Result</h1>
 
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
