@@ -20,7 +20,7 @@ function YoutubeResult({ ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, 
                     </td>
                     <td>Title</td>
                     <td>:</td>
-                    <td><span>{ytTitle}</span> {ytVerified == true ? <Verified /> : ""}</td>
+                    <td className="flex items-center gap-4"><span>{ytTitle}</span> {ytVerified == true ? <Verified /> : ""}</td>
                 </tr>
                 <tr>
                     <td>ID</td>
