@@ -4,7 +4,6 @@ import axios from "axios";
 export default async function GetChannelId(channel_name) {
     const options = {
         method: "GET",
-        // url: "https://youtube-v2.p.rapidapi.com/channel/id",
         url: `${process.env.NEXT_PUBLIC_YOUTUBE_ID_API}`,
         params: {
             channel_name: channel_name,
