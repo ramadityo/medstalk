@@ -42,7 +42,7 @@ export default function Home() {
     |          Validator             |
     |++++++++++++++++++++++++++++++++|
     */
-    
+
     const [youtubeInput, setYoutubeInput] = useState(true);
     const [tiktokInput, setTiktokInput] = useState(false);
     const [ytUsername, setYtUsername] = useState("");
@@ -53,14 +53,14 @@ export default function Home() {
     |       YOUTUBE SECTION          |
     |++++++++++++++++++++++++++++++++|
     */
-    
-    const [ytId, setYtId] = useState(null);
+
+    const [ytId, setYtId] = useState("");
     const [ytAvatar, setYtAvatar] = useState("");
     const [ytTitle, setYtTitle] = useState("");
     const [ytDesc, setYtDesc] = useState("");
     const [ytSubsCount, setYtSubsCount] = useState("");
     const [ytLinks, setYtLinks] = useState();
-    const [ytAvatars, setYtAvatars] = useState();
+    const [ytAvatars, setYtAvatars] = useState([]);
     const [ytVerified, setYtVerified] = useState();
     const [ytHasBusiness, setYtHasBusiness] = useState();
     const [ytViewCount, setYtViewCount] = useState("");
@@ -99,7 +99,7 @@ export default function Home() {
         if (ytUsername && youtubeInput) {
             const data = await YoutubeGetId(ytUsername);
             const channelId = data.channel_id;
-            
+
             setTimeout(async () => {
                 setLoading(false);
                 const detail = await YoutubeGetDetails(channelId);
@@ -139,7 +139,7 @@ export default function Home() {
         <main className="items-center justify-center min-h-screen">
             <section className="relative w-full flex flex-col bg-black min-h-[70vh] hero-sec overflow-hidden rounded-br-[7rem] rounded-bl-[7rem]">
                 <div className="absolute inset-0 ">
-                    <Image src="/hero.webp" fill={true} className="object-cover brightness-50 saturate-150" alt="hero"></Image>
+                    <Image src="/hero.webp" fill={true} className="object-cover transition-all animate-[] brightness-50 saturate-150" alt="hero"></Image>
                 </div>
 
                 <Navbar />
@@ -177,10 +177,15 @@ export default function Home() {
 
                 {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-black outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
-                {loading ? <button disabled className="px-5 py-2 text-xl text-white bg-blue-500 opacity-50 cursor-not-allowed rounded-xl">Loading...</button> : <button disabled={!ytUsername && !ttUsername} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 py-2 text-xl text-white bg-blue-500 rounded-xl`}>
+                {loading ? (
+                    <button disabled className="px-5 py-2 text-xl text-white bg-blue-500 opacity-50 cursor-not-allowed rounded-xl">
+                        Loading...
+                    </button>
+                ) : (
+                    <button disabled={!ytUsername && !ttUsername} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 py-2 text-xl text-white bg-blue-500 rounded-xl`}>
                         Submit
-                    </button> 
-                }
+                    </button>
+                )}
             </section>
 
             {/* Hasil pelacakan */}
@@ -189,7 +194,7 @@ export default function Home() {
                 <h1 className="text-[3rem] font-hndMedium">Result</h1>
 
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
-                
+
                 {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytDesc={ytDesc} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
             </section>
         </main>

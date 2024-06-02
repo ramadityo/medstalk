@@ -3,7 +3,23 @@ import React from "react";
 import Image from "next/image";
 import Verified from "./Verified";
 
-function YoutubeResult({ ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, ytAvatars, ytVerified, ytHasBusiness, ytViewCount, ytCountry, ytCreationDate }) {
+function YoutubeResult(props) {
+    // ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, ytAvatars, ytVerified, ytHasBusiness, ytViewCount, ytCountry, ytCreationDate
+    const {
+        ytId,
+        ytAvatar,
+        ytTitle,
+        ytDesc,
+        ytSubsCount,
+        ytLinks,
+        ytAvatars,
+        ytVerified,
+        ytHasBusiness,
+        ytViewCount,
+        ytCountry,
+        ytCreationDate
+    } = props;
+    
     return (
         <>
             <table className="text-lg border-separate border-spacing-3">
@@ -39,6 +55,19 @@ function YoutubeResult({ ytId, ytAvatar, ytTitle, ytDesc, ytSubsCount, ytLinks, 
                 </tr>
             </table>
             
+            <h1 className="text-3xl pt-9 font-hndMedium">Avatars</h1>
+            <div className="flex items-end gap-4 pt-6">
+                { ytAvatars.map((avatar, idx) => {
+                    return (
+                        <div key={idx}>
+
+                            <Image src={avatar.url} width={avatar.width} height={avatar.height} className="rounded-full" />
+                        </div>
+                    )
+                })}
+            </div>
+            
+            <h1 className="text-3xl pt-9 font-hndMedium">Miscellaneous Info</h1>
         </>
     );
 }
