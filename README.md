@@ -58,7 +58,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ### Why Medstalk is maded?
 
-I made this project inspired by an American hololive character named Watson Amelia. She is an English-speaking female Virtual YouTuber associated with hololive, debuting in 2020 as part of the first generation hololive English “-Myth-,” along with Ninomae Ina'nis, Takanashi Kiara, Mori Calliope, and Gawr Gura.
+I made this project inspired by an Japanese hololive character named Watson Amelia. She is an English-speaking female Virtual YouTuber associated with hololive, debuting in 2020 as part of the first generation hololive English “-Myth-,” along with Ninomae Ina'nis, Takanashi Kiara, Mori Calliope, and Gawr Gura.
 
 The part that reflects her being a detective is mainly in the type of clothing she wears. She wears a light brown deerstalker (commonly known as a “detective hat”) with a checkered pattern on the sides, and a golden hairpin that symbolizes a magnifying glass decorated with several gears.
 
