@@ -32,6 +32,7 @@ import Swal from "sweetalert2";
 
 import YoutubeGetId from "@/api/YoutubeGetId";
 import YoutubeGetDetails from "@/api/YoutubeGetDetails";
+import TiktokGetUserInfo from "@/api/TiktokGetDetails";
 
 export default function Home() {
     // const [input, setInput] = useState("");
@@ -79,7 +80,30 @@ export default function Home() {
     |++++++++++++++++++++++++++++++++|
     */
 
+    // Main info
     const [ttId, setTtId] = useState(null);
+    const [ttSecId, setTtSecId] = useState("");
+    const [ttNickname, setTtNickname] = useState("");
+    const [ttLogId, setTtLogId] = useState("");
+    const [ttAvatar, setTtAvatar] = useState("");
+
+    // Avatars
+    const [ttAvatarLarge, setTtAvatarLarge] = useState("");
+    const [ttAvatarMedium, setTtAvatarMedium] = useState("");
+    const [ttAvatarThumb, setTtAvatarThumb] = useState("");
+
+    // Misc info
+    const [ttSignature, setTtSignature] = useState("");
+    const [ttCategory, setTtCategory] = useState("");
+    const [ttVerified, setTtVerified] = useState(false);
+    const [ttTotalFavorited, setTtTotalFavorited] = useState("");
+    const [ttFollowerCount, setTtFollowerCount] = useState();
+    const [ttFollowingCount, setTtFollowingCount] = useState("");
+    const [ttTwitterId, setTtTwitterId] = useState("");
+    const [ttTwitterName, setTtTwitterName] = useState("");
+    const [ttYoutubeId, setTtYoutubeId] = useState("");
+    const [ttYoutubeName, setTtYoutubeName] = useState("");
+    const [ttFavoritingCount, setTtFavoritingCount] = useState("");
 
     const tiktokClick = () => {
         setTiktokInput(true);
@@ -116,8 +140,26 @@ export default function Home() {
                 setYtCountry(detail.country);
                 setYtCreationDate(detail.creation_date);
             }, 2000);
-        } else {
-            
+        } else if (ttUsername && tiktokInput) {
+            const data = await TiktokGetUserInfo(ttUsername);
+            const user = data.userInfo;
+            const userStats = user.stats;
+            const userInf =  user.user;
+
+            setTimeout(() => {
+                setLoading(false);
+                // const [ttId, setTtId] = useState(null);
+                // const [ttSecId, setTtSecId] = useState("");
+                // const [ttNickname, setTtNickname] = useState("");
+                // const [ttLogId, setTtLogId] = useState("");
+                // const [ttAvatar, setTtAvatar] = useState("");
+                setTtId(userInf.id)
+                setTtSecId(userInf.secUid)
+                setTtNickname(userInf.nickname)
+                setTtLogId(data.extra.logid)
+                setTtAvatar(userInf.avatarLarger)
+                setTtVerified(userInf.verified)
+            }, 1000);
         }
     };
 
@@ -196,8 +238,8 @@ export default function Home() {
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
 
                 {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
-
                 
+                {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} />}
             </section>
         </main>
     );

@@ -1,4 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Medstalk, a simple information gathering website! ✨
+
+![](assets/20240603_225122_cover.png)
+
+## Description
+
+Medstalk (Media Stalk) is a website that is useful for gathering information and data on the target account. Medstalk can be used for analytics purposes.
+
+## Features
+
+Medstalk can gather informations from available platform, such as:
+
+* [X] Youtube
+* [X] TikTok
+* [X] Instagram (in development)
+* [X] Facebook (in development)
+
+## Tech Stack
+
+Medstalk is built using tech stacks such as NextJS, ReactJS, TailwindCSS and RapidAPI.
 
 ## Getting Started
 
@@ -34,3 +53,13 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Motivation
+
+### Why Medstalk is maded?
+
+I made this project inspired by an American hololive character named Watson Amelia. She is an English-speaking female Virtual YouTuber associated with hololive, debuting in 2020 as part of the first generation hololive English “-Myth-,” along with Ninomae Ina'nis, Takanashi Kiara, Mori Calliope, and Gawr Gura.
+
+The part that reflects her being a detective is mainly in the type of clothing she wears. She wears a light brown deerstalker (commonly known as a “detective hat”) with a checkered pattern on the sides, and a golden hairpin that symbolizes a magnifying glass decorated with several gears.
+
+![HD Amelia Watson Wallpapers Peakpx, 53% OFF](https://w0.peakpx.com/wallpaper/446/168/HD-wallpaper-anime-virtual-youtuber-hololive-watson-amelia.jpg)
