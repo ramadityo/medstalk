@@ -90,22 +90,20 @@ export default function Home() {
     const [ttAvatar, setTtAvatar] = useState("");
 
     // Avatars
-    const [ttAvatarLarge, setTtAvatarLarge] = useState("");
+    const [ttAvatarLarger, setTtAvatarLarger] = useState("");
     const [ttAvatarMedium, setTtAvatarMedium] = useState("");
     const [ttAvatarThumb, setTtAvatarThumb] = useState("");
 
     // Misc info
-    const [ttSignature, setTtSignature] = useState("");
-    const [ttCategory, setTtCategory] = useState("");
     const [ttVerified, setTtVerified] = useState(false);
-    const [ttTotalFavorited, setTtTotalFavorited] = useState("");
     const [ttFollowerCount, setTtFollowerCount] = useState();
     const [ttFollowingCount, setTtFollowingCount] = useState("");
-    const [ttTwitterId, setTtTwitterId] = useState("");
-    const [ttTwitterName, setTtTwitterName] = useState("");
-    const [ttYoutubeId, setTtYoutubeId] = useState("");
-    const [ttYoutubeName, setTtYoutubeName] = useState("");
-    const [ttFavoritingCount, setTtFavoritingCount] = useState("");
+
+    const [ttBusinessAcc, setTtBusinessAcc] = useState(false);
+    const [ttRegion, setTtRegion] = useState("");
+    const [ttFriend, setTtFriend] = useState("");
+    const [ttHeartCount, setTtHeartCount] = useState("");
+    const [ttVideoCount, setTtVideoCount] = useState("");
 
     const tiktokClick = () => {
         setTiktokInput(true);
@@ -120,9 +118,10 @@ export default function Home() {
     */
 
     const handleSubmit = async () => {
-        setYtId("");
         setLoading(true);
         if (ytUsername && youtubeInput) {
+            setYtId("");
+            setTtId("");
             const data = await YoutubeGetId(ytUsername);
             const channelId = data.channel_id;
 
@@ -143,6 +142,8 @@ export default function Home() {
                 setYtCreationDate(detail.creation_date);
             }, 2000);
         } else if (ttUsername && tiktokInput) {
+            setYtId("");
+            setTtId("");
             const data = await TiktokGetUserInfo(ttUsername);
             // console.log(data)
 
@@ -154,6 +155,17 @@ export default function Home() {
                 setTtAvatar(data.userInfo.user.avatarLarger);
                 setTtVerified(data.userInfo.user.verified);
                 setTtFollowerCount(data.userInfo.stats.followerCount);
+                setTtAvatarThumb(data.userInfo.user.avatarThumb);
+                setTtAvatarMedium(data.userInfo.user.avatarMedium);
+                setTtAvatarLarger(data.userInfo.user.avatarLarger);
+
+                setTtBusinessAcc(data.userInfo.user.commerceUserInfo.commerceUser);
+                setTtRegion(data.userInfo.user.region);
+                setTtFollowingCount(data.userInfo.stats.followingCount);
+                setTtHeartCount(data.userInfo.stats.heartCount);
+                setTtFriend(data.userInfo.stats.friendCount);
+                setTtVideoCount(data.userInfo.stats.videoCount);
+                
             }, 1000);
         }
     };
@@ -233,13 +245,14 @@ export default function Home() {
             {/* Hasil pelacakan */}
 
             <section className="flex flex-col items-center max-w-full min-h-screen">
-                <h1 className="text-[3rem] font-hndMedium">Result</h1>
-
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
+                <div className={`flex flex-col items-center ${!ytId && !ttId ? "translate-y-10 opacity-0" : "opacity-100"} transition-all`}>
+                    <h1 className="text-[3rem] font-hndMedium transition-all">Result</h1>
 
-                {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
+                    {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
 
-                {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} ttFollowerCount={ttFollowerCount} />}
+                    {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} ttFollowerCount={ttFollowerCount} ttAvatarThumb={ttAvatarThumb} ttAvatarMedium={ttAvatarMedium} ttAvatarLarger={ttAvatarLarger} ttBusinessAcc={ttBusinessAcc} ttRegion={ttRegion} ttFollowingCount={ttFollowingCount} ttFriend={ttFriend} ttHeartCount={ttHeartCount} ttVideoCount={ttVideoCount}  />}
+                </div>
             </section>
         </main>
     );

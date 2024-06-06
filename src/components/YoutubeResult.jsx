@@ -50,7 +50,7 @@ function YoutubeResult(props) {
 
             <h1 className="pt-12 text-3xl font-hndMedium">Miscellaneous Info</h1>
 
-            <div className="">
+            <div>
                 <table className="text-lg border-separate border-spacing-3">
                     <tr>
                         <td>Links</td>
