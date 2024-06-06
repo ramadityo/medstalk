@@ -3,9 +3,10 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Verified from "./Verified";
+import ShorterText from "./ShorterText";
 
 function TiktokResult(props) {
-    const { ttId, ttSecUid, ttNickname, ttAvatar, ttVerified } = props;
+    const { ttId, ttSecUid, ttNickname, ttAvatar, ttVerified, ttFollowerCount } = props;
     return (
         <>
             <table className="text-lg border-separate border-spacing-3">
@@ -15,8 +16,8 @@ function TiktokResult(props) {
                     </td>
                     <td>Title</td>
                     <td>:</td>
-                    <td className="flex items-center gap-4">
-                        <span>{ttNickname}</span> {ttVerified == true ? <Verified /> : ""}
+                    <td>
+                        <span className="block">{ttNickname}</span> {ttVerified == true ? <Verified /> : ""}
                     </td>
                 </tr>
                 <tr>
@@ -24,16 +25,17 @@ function TiktokResult(props) {
                     <td>:</td>
                     <td>{ttId}</td>
                 </tr>
-                {/* <tr>
-                    <td>Subs count</td>
+                <tr>
+                    <td>Sec ID</td>
                     <td>:</td>
-                    <td>{ytSubsCount}</td>
+                    {/* <td>{ttSecUid}</td> */}
+                    <td><ShorterText long_text={ttSecUid} /></td>
                 </tr>
                 <tr>
-                    <td>Country</td>
+                    <td>Follower count</td>
                     <td>:</td>
-                    <td>{ytCountry}</td>
-                </tr> */}
+                    <td>{ttFollowerCount}</td>
+                </tr>
             </table>
         </>
     );

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 
 /*
 |++++++++++++++++++++++++++++++++|
@@ -32,7 +32,9 @@ import Swal from "sweetalert2";
 
 import YoutubeGetId from "@/api/YoutubeGetId";
 import YoutubeGetDetails from "@/api/YoutubeGetDetails";
-import TiktokGetUserInfo from "@/api/TiktokGetDetails";
+import TiktokGetUserInfo from "@/api/TiktokGetUserInfo";
+
+const ScrollContext = createContext();
 
 export default function Home() {
     // const [input, setInput] = useState("");
@@ -142,23 +144,16 @@ export default function Home() {
             }, 2000);
         } else if (ttUsername && tiktokInput) {
             const data = await TiktokGetUserInfo(ttUsername);
-            const user = data.userInfo;
-            const userStats = user.stats;
-            const userInf =  user.user;
+            // console.log(data)
 
             setTimeout(() => {
                 setLoading(false);
-                // const [ttId, setTtId] = useState(null);
-                // const [ttSecId, setTtSecId] = useState("");
-                // const [ttNickname, setTtNickname] = useState("");
-                // const [ttLogId, setTtLogId] = useState("");
-                // const [ttAvatar, setTtAvatar] = useState("");
-                setTtId(userInf.id)
-                setTtSecId(userInf.secUid)
-                setTtNickname(userInf.nickname)
-                setTtLogId(data.extra.logid)
-                setTtAvatar(userInf.avatarLarger)
-                setTtVerified(userInf.verified)
+                setTtId(data.userInfo.user.id);
+                setTtSecId(data.userInfo.user.secUid);
+                setTtNickname(data.userInfo.user.nickname);
+                setTtAvatar(data.userInfo.user.avatarLarger);
+                setTtVerified(data.userInfo.user.verified);
+                setTtFollowerCount(data.userInfo.stats.followerCount);
             }, 1000);
         }
     };
@@ -168,6 +163,7 @@ export default function Home() {
         |       Not available modal      |
         |++++++++++++++++++++++++++++++++|
     */
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const notAvailableTool = () => {
         withReactContent(Swal).fire({
@@ -191,14 +187,18 @@ export default function Home() {
                     <p className="text-2xl text-white font-hndReg">Please select the available information gathering tools</p>
 
                     <div className="flex flex-wrap gap-5">
-                        <button onClick={youtubeClick} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
-                            <Image src="/services/yt.png" width={100} height={100} alt="yt" className="m-auto"></Image>
-                            <p className="text-2xl">Youtube</p>
-                        </button>
-                        <button onClick={tiktokClick} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
-                            <Image src="/services/tiktok.png" width={100} height={100} alt="yt" className="m-auto"></Image>
-                            <p className="text-2xl">Tiktok</p>
-                        </button>
+                        <Tippy content={<span>500 limits/month</span>}>
+                            <button onClick={youtubeClick} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
+                                <Image src="/services/yt.png" width={100} height={100} alt="yt" className="m-auto"></Image>
+                                <p className="text-2xl">Youtube</p>
+                            </button>
+                        </Tippy>
+                        <Tippy content={<span>1000 limits/month</span>}>
+                            <button onClick={tiktokClick} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
+                                <Image src="/services/tiktok.png" width={100} height={100} alt="yt" className="m-auto"></Image>
+                                <p className="text-2xl">Tiktok</p>
+                            </button>
+                        </Tippy>
 
                         <Tippy content={<span>Not available</span>}>
                             <button onClick={notAvailableTool} className="flex flex-col items-center px-10 py-10 transition-all bg-white opacity-50 cursor-not-allowed hover:scale-110 hover:shadow-xl rounded-xl">
@@ -213,7 +213,7 @@ export default function Home() {
             {/* Input */}
 
             <section className="flex flex-col items-center max-w-full gap-4 py-4 pb-12 min-h-10">
-                <p className="text-2xl font-hndMedium text-[#0a0a0a]">Enter the username below.</p>
+                <p className="text-2xl font-hndMedium text-[#0a0a0a]">Enter the {youtubeInput ? "Youtube" : tiktokInput ? "Tiktok" : ""} username below.</p>
 
                 {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-red-500 outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
@@ -238,8 +238,8 @@ export default function Home() {
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
 
                 {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
-                
-                {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} />}
+
+                {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} ttFollowerCount={ttFollowerCount} />}
             </section>
         </main>
     );
