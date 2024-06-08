@@ -184,6 +184,14 @@ export default function Home() {
             text: "Sorry, this tool is not available right now.",
         });
     };
+    
+    const underMaintenance = () => {
+        withReactContent(Swal).fire({
+            title: "Under maintenance!",
+            icon: "error",
+            text: "Sorry, this tool is under maintenance right now.",
+        });
+    };
 
     return (
         <main className="items-center justify-center max-w-full min-h-screen">
@@ -205,8 +213,8 @@ export default function Home() {
                                 <p className="text-2xl">Youtube</p>
                             </button>
                         </Tippy>
-                        <Tippy content={<span>1000 limits/month</span>}>
-                            <button onClick={tiktokClick} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
+                        <Tippy content={<span>Under maintenance</span>}>
+                            <button onClick={underMaintenance} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
                                 <Image src="/services/tiktok.png" width={100} height={100} alt="yt" className="m-auto"></Image>
                                 <p className="text-2xl">Tiktok</p>
                             </button>
@@ -216,6 +224,13 @@ export default function Home() {
                             <button onClick={notAvailableTool} className="flex flex-col items-center px-10 py-10 transition-all bg-white opacity-50 cursor-not-allowed hover:scale-110 hover:shadow-xl rounded-xl">
                                 <Image src="/services/ig.png" width={100} height={100} alt="yt" className="m-auto"></Image>
                                 <p className="text-2xl">Instagram</p>
+                            </button>
+                        </Tippy>
+                        
+                        <Tippy content={<span>Not available</span>}>
+                            <button onClick={notAvailableTool} className="flex flex-col items-center px-10 py-10 transition-all bg-white opacity-50 cursor-not-allowed hover:scale-110 hover:shadow-xl rounded-xl">
+                                <Image src="/services/fb.png" width={100} height={100} alt="yt" className="m-auto"></Image>
+                                <p className="text-2xl">Facebook</p>
                             </button>
                         </Tippy>
                     </div>

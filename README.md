@@ -11,7 +11,7 @@ Medstalk (Media Stalk) is a website that is useful for gathering information and
 Medstalk can gather informations from available platform, such as:
 
 * [X] Youtube
-* [X] TikTok
+* [X] TikTok (Under maintenance)
 * [X] Instagram (in development)
 * [X] Facebook (in development)
 
