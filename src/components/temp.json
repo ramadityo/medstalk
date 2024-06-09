@@ -1,66 +1,44 @@
 {
-    "userInfo": {
-        "user": {
-            "id": "6852601087163679745",
-            "shortId": "",
-            "uniqueId": "animecodeindo",
-            "nickname": "animecode",
-            "avatarLarger": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/592d9f8f3768d19fe8744f1445fccdac~c5_1080x1080.jpeg?lk3s=a5d48078&nonce=33023&refresh_token=37421477c7a4e27e667bef3473d08a0a&x-expires=1717804800&x-signature=9z2aQ955zBuEcEALfTtYT%2BAZfxY%3D&shp=a5d48078&shcp=81f88b70",
-            "avatarMedium": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/592d9f8f3768d19fe8744f1445fccdac~c5_720x720.jpeg?lk3s=a5d48078&nonce=84010&refresh_token=a234560147c0246ef16169623f70347e&x-expires=1717804800&x-signature=yFqfcIplGsNCFKJIUxSbk47bMrk%3D&shp=a5d48078&shcp=81f88b70",
-            "avatarThumb": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/592d9f8f3768d19fe8744f1445fccdac~c5_100x100.jpeg?lk3s=a5d48078&nonce=53382&refresh_token=f36b291477c4edee68fc1d67d22bd4a6&x-expires=1717804800&x-signature=hPjTnhKuUMuS15vNYF3ybczJiyU%3D&shp=a5d48078&shcp=81f88b70",
-            "signature": "Website (WIP): animecode.vercel.app \nYouTube: animecodeindo",
-            "createTime": 0,
-            "verified": false,
-            "secUid": "MS4wLjABAAAAYGcIT6sX1LrD5mmXiN2MQ-HE3PhdZu_QoqUdhFyNJWS-vnzwvJIg9oNM47LQ76Oa",
-            "ftc": false,
-            "relation": 0,
-            "openFavorite": false,
-            "commentSetting": 0,
-            "commerceUserInfo": {
-                "commerceUser": false
-            },
-            "duetSetting": 0,
-            "stitchSetting": 0,
-            "privateAccount": false,
-            "secret": false,
-            "isADVirtual": false,
-            "roomId": "",
-            "uniqueIdModifyTime": 0,
-            "ttSeller": false,
-            "region": "ID",
-            "downloadSetting": 0,
-            "profileTab": {
-                "showMusicTab": false,
-                "showQuestionTab": false,
-                "showPlayListTab": false
-            },
-            "followingVisibility": 1,
-            "recommendReason": "",
-            "nowInvitationCardUrl": "",
-            "nickNameModifyTime": 1690183085,
-            "isEmbedBanned": false,
-            "canExpPlaylist": true,
-            "profileEmbedPermission": 1,
-            "language": "en",
-            "eventList": [],
-            "suggestAccountBind": false
-        },
-        "stats": {
-            "followerCount": 1426,
-            "followingCount": 11,
-            "heart": 8243,
-            "heartCount": 8243,
-            "videoCount": 10,
-            "diggCount": 0,
-            "friendCount": 6
-        },
-        "itemList": []
+    "stats": {
+        "diggCount": 0,
+        "followerCount": 1426,
+        "followingCount": 11,
+        "friendCount": 6,
+        "heart": 8252,
+        "heartCount": 8252,
+        "videoCount": 10
     },
-    "shareMeta": {
-        "title": "animecode on TikTok",
-        "desc": "@animecodeindo 1426 Followers, 11 Following, 8243 Likes - Watch awesome short videos created by animecode"
-    },
-    "statusCode": 0,
-    "statusMsg": "ok",
-    "needFix": false
+    "user": {
+        "avatarLarger": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/592d9f8f3768d19fe8744f1445fccdac~c5_1080x1080.jpeg?lk3s=a5d48078&nonce=36606&refresh_token=7cc0b3cf91293b6d3ea961ef45db4a27&x-expires=1718096400&x-signature=BGq%2B0for0FyQJWBK2YNODInu5vE%3D&shp=a5d48078&shcp=81f88b70",
+        "avatarMedium": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/592d9f8f3768d19fe8744f1445fccdac~c5_720x720.jpeg?lk3s=a5d48078&nonce=46595&refresh_token=7c32c2d65a587fe6612da01eeef1f2cc&x-expires=1718096400&x-signature=5ElL4BCGkrZOmFtYdZ33ZSLfYjQ%3D&shp=a5d48078&shcp=81f88b70",
+        "avatarThumb": "https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/592d9f8f3768d19fe8744f1445fccdac~c5_100x100.jpeg?lk3s=a5d48078&nonce=12014&refresh_token=e355178f0ee975c40a4af3eec1fadcde&x-expires=1718096400&x-signature=ePVDjqADdg5kyi%2FcUrFWKDFMxJk%3D&shp=a5d48078&shcp=81f88b70",
+        "canExpPlaylist": true,
+        "commentSetting": 0,
+        "commerceUserInfo": {
+            "commerceUser": false
+        },
+        "downloadSetting": 0,
+        "duetSetting": 0,
+        "followingVisibility": 1,
+        "ftc": false,
+        "id": "6852601087163679745",
+        "isADVirtual": false,
+        "isEmbedBanned": false,
+        "nickNameModifyTime": 1690183085,
+        "nickname": "animecode",
+        "openFavorite": false,
+        "privateAccount": false,
+        "profileEmbedPermission": 1,
+        "profileTab": {
+            "showPlayListTab": false
+        },
+        "relation": 0,
+        "secUid": "MS4wLjABAAAAYGcIT6sX1LrD5mmXiN2MQ-HE3PhdZu_QoqUdhFyNJWS-vnzwvJIg9oNM47LQ76Oa",
+        "secret": false,
+        "signature": "Website (WIP): animecode.vercel.app \nYouTube: animecodeindo",
+        "stitchSetting": 0,
+        "ttSeller": false,
+        "uniqueId": "animecodeindo",
+        "verified": false
+    }
 }

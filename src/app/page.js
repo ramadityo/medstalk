@@ -149,22 +149,22 @@ export default function Home() {
 
             setTimeout(() => {
                 setLoading(false);
-                setTtId(data.userInfo.user.id);
-                setTtSecId(data.userInfo.user.secUid);
-                setTtNickname(data.userInfo.user.nickname);
-                setTtAvatar(data.userInfo.user.avatarLarger);
-                setTtVerified(data.userInfo.user.verified);
-                setTtFollowerCount(data.userInfo.stats.followerCount);
-                setTtAvatarThumb(data.userInfo.user.avatarThumb);
-                setTtAvatarMedium(data.userInfo.user.avatarMedium);
-                setTtAvatarLarger(data.userInfo.user.avatarLarger);
+                setTtId(data.user.id);
+                setTtSecId(data.user.secUid);
+                setTtNickname(data.user.nickname);
+                setTtAvatar(data.user.avatarLarger);
+                setTtVerified(data.user.verified);
+                setTtFollowerCount(data.stats.followerCount);
+                setTtAvatarThumb(data.user.avatarThumb);
+                setTtAvatarMedium(data.user.avatarMedium);
+                setTtAvatarLarger(data.user.avatarLarger);
 
-                setTtBusinessAcc(data.userInfo.user.commerceUserInfo.commerceUser);
-                setTtRegion(data.userInfo.user.region);
-                setTtFollowingCount(data.userInfo.stats.followingCount);
-                setTtHeartCount(data.userInfo.stats.heartCount);
-                setTtFriend(data.userInfo.stats.friendCount);
-                setTtVideoCount(data.userInfo.stats.videoCount);
+                setTtBusinessAcc(data.user.commerceUserInfo.commerceUser);
+                setTtRegion(data.user.region);
+                setTtFollowingCount(data.stats.followingCount);
+                setTtHeartCount(data.stats.heartCount);
+                setTtFriend(data.stats.friendCount);
+                setTtVideoCount(data.stats.videoCount);
                 
             }, 1000);
         }
@@ -213,8 +213,8 @@ export default function Home() {
                                 <p className="text-2xl">Youtube</p>
                             </button>
                         </Tippy>
-                        <Tippy content={<span>Under maintenance</span>}>
-                            <button onClick={underMaintenance} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
+                        <Tippy content={<span>20 limits/day</span>}>
+                            <button onClick={tiktokClick} className="flex flex-col items-center px-10 py-10 transition-all bg-white hover:scale-110 hover:shadow-xl rounded-xl">
                                 <Image src="/services/tiktok.png" width={100} height={100} alt="yt" className="m-auto"></Image>
                                 <p className="text-2xl">Tiktok</p>
                             </button>
