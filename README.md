@@ -56,7 +56,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 ## Motivation
 
-I made this project inspired by a Japanese hololive character named Watson Amelia (ワトソン・アメリア). She is an English-speaking female Virtual YouTuber associated with hololive, debuting in 2020 as part of the first generation hololive English “-Myth-,” along with Ninomae Ina'nis, Takanashi Kiara, Mori Calliope, and Gawr Gura.
+I created this project inspired by a Japanese hololive character named Watson Amelia (ワトソン・アメリア). She is an English-speaking female Virtual YouTuber associated with hololive, debuting in 2020 as part of the first generation hololive English “-Myth-,” along with Ninomae Ina'nis, Takanashi Kiara, Mori Calliope, and Gawr Gura.
 
 The part that reflects her being a detective is mainly in the type of clothing she wears. She wears a light brown deerstalker (commonly known as a “detective hat”) with a checkered pattern on the sides, and a golden hairpin that symbolizes a magnifying glass decorated with several gears.
 
