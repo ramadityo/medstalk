@@ -18,6 +18,8 @@ export default async function YoutubeGetDetails(channel_id) {
         const response = await axios.request(options);
         const data = response.data;
 
+        console.log(data);
+
         return data;
     } catch (error) {
         console.error(error);

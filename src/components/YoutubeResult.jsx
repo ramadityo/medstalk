@@ -77,7 +77,7 @@ function YoutubeResult(props) {
                         <td>:</td>
                         <td>{ytViewCount}</td>
                     </tr>
-                    
+
                     <tr>
                         <td>Account created</td>
                         <td>:</td>

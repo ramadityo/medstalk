@@ -129,7 +129,7 @@ export default function Home() {
                 setLoading(false);
                 const detail = await YoutubeGetDetails(channelId);
                 setYtId(detail.channel_id);
-                setYtAvatar(detail.avatar[2].url);
+                setYtAvatar(detail.avatar[0].url);
                 setYtTitle(detail.title);
                 setYtDesc(detail.description);
                 setYtSubsCount(detail.subscriber_count);
@@ -165,7 +165,6 @@ export default function Home() {
                 setTtHeartCount(data.stats.heartCount);
                 setTtFriend(data.stats.friendCount);
                 setTtVideoCount(data.stats.videoCount);
-                
             }, 1000);
         }
     };
@@ -184,7 +183,7 @@ export default function Home() {
             text: "Sorry, this tool is not available right now.",
         });
     };
-    
+
     const underMaintenance = () => {
         withReactContent(Swal).fire({
             title: "Under maintenance!",
@@ -226,7 +225,7 @@ export default function Home() {
                                 <p className="text-2xl">Instagram</p>
                             </button>
                         </Tippy>
-                        
+
                         <Tippy content={<span>Not available</span>}>
                             <button onClick={notAvailableTool} className="flex flex-col items-center px-10 py-10 transition-all bg-white opacity-50 cursor-not-allowed hover:scale-110 hover:shadow-xl rounded-xl">
                                 <Image src="/services/fb.png" width={100} height={100} alt="yt" className="m-auto"></Image>
@@ -259,14 +258,14 @@ export default function Home() {
 
             {/* Hasil pelacakan */}
 
-            <section className="flex flex-col items-center max-w-full min-h-screen">
+            <section className="flex flex-col items-center max-w-full min-h-screen pb-32">
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
                 <div className={`flex flex-col items-center ${!ytId && !ttId ? "translate-y-10 opacity-0" : "opacity-100"} transition-all`}>
                     <h1 className="text-[3rem] font-hndMedium transition-all">Result</h1>
 
                     {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
 
-                    {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} ttFollowerCount={ttFollowerCount} ttAvatarThumb={ttAvatarThumb} ttAvatarMedium={ttAvatarMedium} ttAvatarLarger={ttAvatarLarger} ttBusinessAcc={ttBusinessAcc} ttRegion={ttRegion} ttFollowingCount={ttFollowingCount} ttFriend={ttFriend} ttHeartCount={ttHeartCount} ttVideoCount={ttVideoCount}  />}
+                    {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} ttFollowerCount={ttFollowerCount} ttAvatarThumb={ttAvatarThumb} ttAvatarMedium={ttAvatarMedium} ttAvatarLarger={ttAvatarLarger} ttBusinessAcc={ttBusinessAcc} ttRegion={ttRegion} ttFollowingCount={ttFollowingCount} ttFriend={ttFriend} ttHeartCount={ttHeartCount} ttVideoCount={ttVideoCount} />}
                 </div>
             </section>
         </main>
