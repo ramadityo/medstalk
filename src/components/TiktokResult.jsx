@@ -36,6 +36,11 @@ function TiktokResult(props) {
 
     useEffect(() => {
         setTtId(detail.user.id);
+        if (ttId) {
+            setTimeout(() => {
+                console.clear();
+            }, 3000);
+        }
         setTtSecId(detail.user.secUid);
         setTtNickname(detail.user.nickname);
         setTtAvatar(detail.user.avatarLarger);
@@ -51,10 +56,6 @@ function TiktokResult(props) {
         setTtHeartCount(detail.stats.heartCount);
         setTtFriend(detail.stats.friendCount);
         setTtVideoCount(detail.stats.videoCount);
-
-        setTimeout(() => {
-            console.clear();
-        }, 2000);
     }, [detail]);
 
     return (
