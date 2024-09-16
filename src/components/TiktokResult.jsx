@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +9,54 @@ import ShorterText from "./ShorterText";
 import NumFormater from "./NumFormater";
 
 function TiktokResult(props) {
-    const { ttId, ttSecUid, ttNickname, ttAvatar, ttVerified, ttFollowerCount, ttAvatarThumb, ttAvatarMedium, ttAvatarLarger, ttBusinessAcc, ttRegion, ttFollowingCount, ttFriend, ttHeartCount, ttVideoCount } = props;
+    const { detail } = props;
+
+    // Main info
+    const [ttId, setTtId] = useState(null);
+    const [ttSecId, setTtSecId] = useState("");
+    const [ttNickname, setTtNickname] = useState("");
+    const [ttLogId, setTtLogId] = useState("");
+    const [ttAvatar, setTtAvatar] = useState("");
+
+    // Avatars
+    const [ttAvatarLarger, setTtAvatarLarger] = useState("");
+    const [ttAvatarMedium, setTtAvatarMedium] = useState("");
+    const [ttAvatarThumb, setTtAvatarThumb] = useState("");
+
+    // Misc info
+    const [ttVerified, setTtVerified] = useState(false);
+    const [ttFollowerCount, setTtFollowerCount] = useState(0);
+    const [ttFollowingCount, setTtFollowingCount] = useState(0);
+
+    const [ttBusinessAcc, setTtBusinessAcc] = useState(false);
+    const [ttRegion, setTtRegion] = useState("");
+    const [ttFriend, setTtFriend] = useState("");
+    const [ttHeartCount, setTtHeartCount] = useState(0);
+    const [ttVideoCount, setTtVideoCount] = useState(0);
+
+    useEffect(() => {
+        setTtId(detail.user.id);
+        setTtSecId(detail.user.secUid);
+        setTtNickname(detail.user.nickname);
+        setTtAvatar(detail.user.avatarLarger);
+        setTtVerified(detail.user.verified);
+        setTtFollowerCount(detail.stats.followerCount);
+        setTtAvatarThumb(detail.user.avatarThumb);
+        setTtAvatarMedium(detail.user.avatarMedium);
+        setTtAvatarLarger(detail.user.avatarLarger);
+
+        setTtBusinessAcc(detail.user.commerceUserInfo.commerceUser);
+        setTtRegion(detail.user.region);
+        setTtFollowingCount(detail.stats.followingCount);
+        setTtHeartCount(detail.stats.heartCount);
+        setTtFriend(detail.stats.friendCount);
+        setTtVideoCount(detail.stats.videoCount);
+
+        setTimeout(() => {
+            console.clear();
+        }, 2000);
+    }, [detail]);
+
     return (
         <>
             <table className="text-lg border-separate border-spacing-3">
@@ -31,7 +80,7 @@ function TiktokResult(props) {
                     <td>:</td>
                     {/* <td>{ttSecUid}</td> */}
                     <td>
-                        <ShorterText long_text={ttSecUid} />
+                        <ShorterText long_text={ttSecId} />
                     </td>
                 </tr>
                 <tr>
@@ -45,13 +94,13 @@ function TiktokResult(props) {
 
             <div className="flex items-end gap-4 pt-6">
                 <div>
-                    <Image src={ttAvatarThumb} width={48} height={48} className="border-2 border-black rounded-full" />
+                    <Image src={ttAvatarThumb} width={48} height={48} className="border-2 border-black rounded-full" alt="Image thumb" />
                 </div>
                 <div>
-                    <Image src={ttAvatarMedium} width={88} height={88} className="border-2 border-black rounded-full" />
+                    <Image src={ttAvatarMedium} width={88} height={88} className="border-2 border-black rounded-full" alt="Image thumb" />
                 </div>
                 <div>
-                    <Image src={ttAvatarLarger} width={172} height={172} className="border-2 border-black rounded-full" />
+                    <Image src={ttAvatarLarger} width={172} height={172} className="border-2 border-black rounded-full" alt="Image thumb" />
                 </div>
             </div>
 
@@ -62,7 +111,9 @@ function TiktokResult(props) {
                     <tr>
                         <td>Followers count</td>
                         <td>:</td>
-                        <td><NumFormater number={ttFollowerCount} /></td>
+                        <td>
+                            <NumFormater number={ttFollowerCount} />
+                        </td>
                     </tr>
                     <tr>
                         <td>Following count</td>
@@ -87,9 +138,11 @@ function TiktokResult(props) {
                     <tr>
                         <td>Favorited total</td>
                         <td>:</td>
-                        <td><NumFormater number={ttHeartCount} /></td>
+                        <td>
+                            <NumFormater number={ttHeartCount} />
+                        </td>
                     </tr>
-                    
+
                     {/* <tr>
                         <td>Viewed count</td>
                         <td>:</td>

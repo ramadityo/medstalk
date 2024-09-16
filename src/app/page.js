@@ -40,10 +40,12 @@ const ScrollContext = createContext();
 
 export default function Home() {
     const router = useRouter();
-    // const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
-
     const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        console.clear();
+    }, []);
 
     const checkDevice = () => {
         if (typeof window !== "undefined") {
@@ -82,22 +84,12 @@ export default function Home() {
     */
 
     const [ytId, setYtId] = useState("");
-    const [ytAvatar, setYtAvatar] = useState("");
-    const [ytTitle, setYtTitle] = useState("");
-    const [ytDesc, setYtDesc] = useState("");
-    const [ytSubsCount, setYtSubsCount] = useState("");
-    const [ytLinks, setYtLinks] = useState();
-    const [ytAvatars, setYtAvatars] = useState([]);
-    const [ytVerified, setYtVerified] = useState();
-    const [ytHasBusiness, setYtHasBusiness] = useState();
-    const [ytViewCount, setYtViewCount] = useState("");
-    const [ytCountry, setYtCountry] = useState("");
-    const [ytCreationDate, setYtCreationDate] = useState("");
+    const [ytDetail, setYtDetail] = useState({});
 
     const youtubeClick = () => {
         setYoutubeInput(true);
         setTiktokInput(false);
-        setTtUsername(""); // Hapus username toktok jika memilih yt
+        setTtUsername("");
     };
 
     /*
@@ -106,33 +98,13 @@ export default function Home() {
     |++++++++++++++++++++++++++++++++|
     */
 
-    // Main info
     const [ttId, setTtId] = useState(null);
-    const [ttSecId, setTtSecId] = useState("");
-    const [ttNickname, setTtNickname] = useState("");
-    const [ttLogId, setTtLogId] = useState("");
-    const [ttAvatar, setTtAvatar] = useState("");
-
-    // Avatars
-    const [ttAvatarLarger, setTtAvatarLarger] = useState("");
-    const [ttAvatarMedium, setTtAvatarMedium] = useState("");
-    const [ttAvatarThumb, setTtAvatarThumb] = useState("");
-
-    // Misc info
-    const [ttVerified, setTtVerified] = useState(false);
-    const [ttFollowerCount, setTtFollowerCount] = useState();
-    const [ttFollowingCount, setTtFollowingCount] = useState("");
-
-    const [ttBusinessAcc, setTtBusinessAcc] = useState(false);
-    const [ttRegion, setTtRegion] = useState("");
-    const [ttFriend, setTtFriend] = useState("");
-    const [ttHeartCount, setTtHeartCount] = useState("");
-    const [ttVideoCount, setTtVideoCount] = useState("");
+    const [ttDetail, setTtDetail] = useState({});
 
     const tiktokClick = () => {
         setTiktokInput(true);
         setYoutubeInput(false);
-        setYtUsername(""); // Hapus username yt jika memilih toktok
+        setYtUsername("");
     };
 
     /*
@@ -153,42 +125,18 @@ export default function Home() {
                 setLoading(false);
                 const detail = await YoutubeGetDetails(channelId);
                 setYtId(detail.channel_id);
-                setYtAvatar(detail.avatar[0].url);
-                setYtTitle(detail.title);
-                setYtDesc(detail.description);
-                setYtSubsCount(detail.subscriber_count);
-                setYtLinks(detail.links);
-                setYtAvatars(detail.avatar);
-                setYtVerified(detail.verified);
-                setYtHasBusiness(detail.has_business_email);
-                setYtViewCount(detail.view_count);
-                setYtCountry(detail.country);
-                setYtCreationDate(detail.creation_date);
+
+                setYtDetail(detail);
             }, 2000);
         } else if (ttUsername && tiktokInput) {
             setYtId("");
             setTtId("");
             const data = await TiktokGetUserInfo(ttUsername);
-            // console.log(data)
 
             setTimeout(() => {
                 setLoading(false);
                 setTtId(data.user.id);
-                setTtSecId(data.user.secUid);
-                setTtNickname(data.user.nickname);
-                setTtAvatar(data.user.avatarLarger);
-                setTtVerified(data.user.verified);
-                setTtFollowerCount(data.stats.followerCount);
-                setTtAvatarThumb(data.user.avatarThumb);
-                setTtAvatarMedium(data.user.avatarMedium);
-                setTtAvatarLarger(data.user.avatarLarger);
-
-                setTtBusinessAcc(data.user.commerceUserInfo.commerceUser);
-                setTtRegion(data.user.region);
-                setTtFollowingCount(data.stats.followingCount);
-                setTtHeartCount(data.stats.heartCount);
-                setTtFriend(data.stats.friendCount);
-                setTtVideoCount(data.stats.videoCount);
+                setTtDetail(data);
             }, 1000);
         }
     };
@@ -306,7 +254,7 @@ export default function Home() {
             <section className="flex flex-col items-center max-w-full gap-4 py-4 pb-12 min-h-10">
                 {toolName ? (
                     <>
-                        <p className="text-2xl font-hndMedium text-[#0a0a0a]">Enter the {youtubeInput ? "Youtube" : tiktokInput ? "Tiktok" : ""} username below.</p>
+                        <p className="text-2xl font-hndMedium text-[#0a0a0a] text-center">Enter the {youtubeInput ? "Youtube" : tiktokInput ? "Tiktok" : ""} username below.</p>
 
                         {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-red-500 outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
@@ -356,11 +304,11 @@ export default function Home() {
             <section className="flex flex-col items-center max-w-full min-h-60 pb-32">
                 {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
                 <div className={`flex flex-col items-center ${!ytId && !ttId ? "translate-y-10 opacity-0" : "opacity-100"} transition-all`}>
-                    <h1 className="text-[3rem] font-hndMedium transition-all">Result</h1>
+                    <h1 className="text-5xl mobile:text-4xl font-hndMedium transition-all">Result</h1>
 
-                    {ytId && <YoutubeResult ytId={ytId} ytAvatar={ytAvatar} ytTitle={ytTitle} ytSubsCount={ytSubsCount} ytLinks={ytLinks} ytAvatars={ytAvatars} ytVerified={ytVerified} ytHasBusiness={ytHasBusiness} ytViewCount={ytViewCount} ytCountry={ytCountry} ytCreationDate={ytCreationDate} />}
+                    {ytId && <YoutubeResult detail={ytDetail} />}
 
-                    {ttId && <TiktokResult ttId={ttId} ttSecUid={ttSecId} ttNickname={ttNickname} ttAvatar={ttAvatar} ttVerified={ttVerified} ttFollowerCount={ttFollowerCount} ttAvatarThumb={ttAvatarThumb} ttAvatarMedium={ttAvatarMedium} ttAvatarLarger={ttAvatarLarger} ttBusinessAcc={ttBusinessAcc} ttRegion={ttRegion} ttFollowingCount={ttFollowingCount} ttFriend={ttFriend} ttHeartCount={ttHeartCount} ttVideoCount={ttVideoCount} />}
+                    {ttId && <TiktokResult detail={ttDetail} />}
                 </div>
             </section>
         </main>

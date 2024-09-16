@@ -1,3 +1,5 @@
+"use server";
+
 import React from "react";
 import axios from "axios";
 
@@ -17,7 +19,7 @@ export default async function YoutubeGetId(channel_name) {
     try {
         const response = await axios.request(options);
         // const data = response.data;
-        return response.data
+        return response.data;
     } catch (error) {
         console.error(error);
     }
