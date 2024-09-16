@@ -227,14 +227,10 @@ export default function Home() {
             tiktokClick();
             setToolName(true);
         } else if (e.target.value === "instagram") {
-            // tiktokClick();
-            // setToolName(true);
             setToolName(false);
             resetTools();
             notAvailableTool();
         } else if (e.target.value === "facebook") {
-            // tiktokClick();
-            // setToolName(true);
             setToolName(false);
             resetTools();
             notAvailableTool();
