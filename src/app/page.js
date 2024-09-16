@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useState, createContext } from "react";
 
+import { useRouter } from "next/navigation";
+
 /*
 |++++++++++++++++++++++++++++++++|
 |           COMPONENTS           |
@@ -37,6 +39,7 @@ import TiktokGetUserInfo from "@/api/TiktokGetUserInfo";
 const ScrollContext = createContext();
 
 export default function Home() {
+    const router = useRouter();
     // const [input, setInput] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -46,6 +49,8 @@ export default function Home() {
         if (typeof window !== "undefined") {
             if (window.innerWidth < 500) {
                 setIsMobile(true);
+
+                router.refresh();
             } else {
                 setIsMobile(false);
             }
@@ -319,7 +324,29 @@ export default function Home() {
                     </>
                 ) : (
                     <>
-                        <p className="text-2xl font-hndMedium text-[#0a0a0a]">Choose tool above to start</p>
+                        {isMobile ? (
+                            <>
+                                <p className="text-2xl font-hndMedium text-[#0a0a0a]">Choose tool above to start</p>
+                            </>
+                        ) : (
+                            <>
+                                <p className="text-2xl font-hndMedium text-[#0a0a0a]">Enter the {youtubeInput ? "Youtube" : tiktokInput ? "Tiktok" : ""} username below.</p>
+
+                                {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-red-500 outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
+
+                                {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-black outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
+
+                                {loading ? (
+                                    <button disabled className="px-5 py-2 text-xl text-white bg-blue-500 opacity-50 cursor-not-allowed rounded-xl">
+                                        Loading...
+                                    </button>
+                                ) : (
+                                    <button disabled={!ytUsername && !ttUsername} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 py-2 text-xl text-white bg-blue-500 rounded-xl`}>
+                                        Submit
+                                    </button>
+                                )}
+                            </>
+                        )}
                     </>
                 )}
             </section>
