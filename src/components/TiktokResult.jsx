@@ -63,7 +63,7 @@ function TiktokResult(props) {
             <table className="text-lg border-separate border-spacing-3">
                 <tr className="p-0">
                     <td rowSpan={4} className="mr-2">
-                        <Image src={ttAvatar} width={162} height={162} className="rounded-full "></Image>
+                        <Image src={ttAvatar} width={162} height={162} className="rounded-full mobile:hidden"></Image>
                     </td>
                     <td>Title</td>
                     <td>:</td>
@@ -91,9 +91,9 @@ function TiktokResult(props) {
                 </tr>
             </table>
 
-            <h1 className="text-3xl pt-9 font-hndMedium">Avatars</h1>
+            <h1 className="text-3xl pt-9 font-hndMedium mobile:hidden">Avatars</h1>
 
-            <div className="flex items-end gap-4 pt-6">
+            <div className="flex items-end gap-4 pt-6 mobile:hidden">
                 <div>
                     <Image src={ttAvatarThumb} width={48} height={48} className="border-2 border-black rounded-full" alt="Image thumb" />
                 </div>

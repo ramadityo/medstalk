@@ -51,7 +51,6 @@ export default function Home() {
         if (typeof window !== "undefined") {
             if (window.innerWidth < 500) {
                 setIsMobile(true);
-
                 router.refresh();
             } else {
                 setIsMobile(false);
@@ -254,21 +253,21 @@ export default function Home() {
             <section className="flex flex-col items-center max-w-full gap-4 py-4 pb-12 min-h-10">
                 {toolName ? (
                     <>
-                        <p className="text-2xl font-hndMedium text-[#0a0a0a] text-center">Enter the {youtubeInput ? "Youtube" : tiktokInput ? "Tiktok" : ""} username below.</p>
+                        <p className="text-2xl mobile:text-xl font-hndMedium text-[#0a0a0a] text-center">Enter the {youtubeInput ? "Youtube" : tiktokInput ? "Tiktok" : ""} username below.</p>
 
-                        {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-red-500 outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
+                        {youtubeInput && <input onChange={(e) => setYtUsername(e.target.value)} className="py-1 text-2xl mobile:text-lg text-center border-2 border-red-500 outline-none px-5 rounded-2xl mobile:rounded-xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
-                        {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-black outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
+                        {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-1 text-2xl mobile:text-lg text-center border-2 border-black outline-none px-7 rounded-2xl mobile:rounded-xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
-                        {loading ? (
-                            <button disabled className="px-5 py-2 text-xl text-white bg-blue-500 opacity-50 cursor-not-allowed rounded-xl">
-                                Loading...
-                            </button>
-                        ) : (
-                            <button disabled={!ytUsername && !ttUsername} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 py-2 text-xl text-white bg-blue-500 rounded-xl`}>
-                                Submit
-                            </button>
-                        )}
+                        <button disabled={!ytUsername && !ttUsername && !loading} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} ${loading ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 mobile:px-4 py-2 mobile:py-2 text-xl mobile:text-lg text-white bg-blue-500 rounded-xl flex items-center`}>
+                            {loading && (
+                                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            )}
+                            {loading ? "Loading..." : "Submit"}
+                        </button>
                     </>
                 ) : (
                     <>
@@ -284,7 +283,8 @@ export default function Home() {
 
                                 {tiktokInput && <input onChange={(e) => setTtUsername(e.target.value)} className="py-2 text-2xl text-center border-2 border-black outline-none px-7 rounded-2xl font-hndMedium" type="text" name="username" id="username" placeholder="Username here" />}
 
-                                {loading ? (
+                                {
+                                    /* {loading ? (
                                     <button disabled className="px-5 py-2 text-xl text-white bg-blue-500 opacity-50 cursor-not-allowed rounded-xl">
                                         Loading...
                                     </button>
@@ -292,7 +292,17 @@ export default function Home() {
                                     <button disabled={!ytUsername && !ttUsername} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 py-2 text-xl text-white bg-blue-500 rounded-xl`}>
                                         Submit
                                     </button>
-                                )}
+                                )} */
+                                    <button disabled={!ytUsername && !ttUsername && !loading} onClick={handleSubmit} className={`${!ytUsername && !ttUsername ? "opacity-50 cursor-not-allowed" : ""} ${loading ? "opacity-50 cursor-not-allowed" : ""} transition-all px-5 mobile:px-4 py-2 mobile:py-2 text-xl mobile:text-lg text-white bg-blue-500 rounded-xl flex items-center`}>
+                                        {loading && (
+                                            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                            </svg>
+                                        )}
+                                        {loading ? "Loading..." : "Submit"}
+                                    </button>
+                                }
                             </>
                         )}
                     </>
@@ -302,7 +312,7 @@ export default function Home() {
             {/* Hasil pelacakan */}
 
             <section className="flex flex-col items-center max-w-full min-h-60 pb-32">
-                {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null}
+                {/* {loading ? <div className="w-12 h-12 border-4 border-t-4 rounded-full border-t-blue-400 animate-spin"></div> : null} */}
                 <div className={`flex flex-col items-center ${!ytId && !ttId ? "translate-y-10 opacity-0" : "opacity-100"} transition-all`}>
                     <h1 className="text-5xl mobile:text-4xl font-hndMedium transition-all">Result</h1>
 
