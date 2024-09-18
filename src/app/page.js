@@ -195,7 +195,7 @@ export default function Home() {
     return (
         <main className="items-center justify-center max-w-full min-h-screen">
             <section className="relative max-w-full flex flex-col bg-black min-h-[70vh] mobile:min-h-[50vh] pb-11 hero-sec overflow-hidden rounded-br-[7rem] mobile:rounded-br-[3rem] rounded-bl-[7rem] mobile:rounded-bl-[3rem]">
-                <div className="absolute inset-0 ">
+                <div className="absolute inset-0">
                     <Image src="/hero.webp" fill className="object-cover transition-all animate-[] brightness-50 saturate-150" alt="hero"></Image>
                 </div>
 
