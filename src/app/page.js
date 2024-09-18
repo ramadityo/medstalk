@@ -1,9 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { useRouter } from "next/navigation";
+
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
 
 /*
 |++++++++++++++++++++++++++++++++|
@@ -36,9 +39,31 @@ import YoutubeGetId from "@/api/YoutubeGetId";
 import YoutubeGetDetails from "@/api/YoutubeGetDetails";
 import TiktokGetUserInfo from "@/api/TiktokGetUserInfo";
 
-const ScrollContext = createContext();
-
 export default function Home() {
+    const container = useRef();
+
+    const { contextSafe } = useGSAP({ scope: container });
+
+    const initAnimation = contextSafe(() => {
+        let tl = gsap.timeline();
+        tl.to(".overlay", {
+            duration: 0.01,
+            ease: "none",
+            opacity: 0,
+        });
+
+        tl.from(".image-anim", {
+            autoAlpha: 0,
+            duration: 3,
+            ease: "expo.inOut",
+            scale: 1.3,
+            willChange: "transform",
+        });
+    });
+
+    useEffect(() => {
+        initAnimation();
+    }, []);
     const router = useRouter();
     const [loading, setLoading] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -193,10 +218,11 @@ export default function Home() {
     };
 
     return (
-        <main className="items-center justify-center max-w-full min-h-screen">
+        <main className="items-center justify-center max-w-full min-h-screen" ref={container}>
             <section className="relative max-w-full flex flex-col bg-black min-h-[70vh] mobile:min-h-[50vh] pb-11 hero-sec overflow-hidden rounded-br-[7rem] mobile:rounded-br-[3rem] rounded-bl-[7rem] mobile:rounded-bl-[3rem]">
-                <div className="absolute inset-0">
-                    <Image src="/hero.webp" fill className="object-cover transition-all animate-[] brightness-50 saturate-150" alt="hero"></Image>
+                <div className="absolute inset-0 image-anim">
+                    <Image src="/hero.webp" fill className="object-cover transition-all animate-[] brightness-50 saturate-150" alt="hero" />
+                    <div className="absolute inset-0 bg-black overlay"></div>
                 </div>
 
                 <Navbar />
